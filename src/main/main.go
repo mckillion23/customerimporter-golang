@@ -21,7 +21,7 @@ func main() {
 	sort.Strings(sortedCounts)
 
 	for _, k := range sortedCounts {
-		fmt.Println(k, domainMap[k])
+		fmt.Printf("Domain: %s, Customer Count: %d\n", k, domainMap[k])
 	}
 }
 
