@@ -10,13 +10,16 @@ import (
 func main() {
 	domainMap := customerimporter.GetUniqueDomainNamesWithCount("../customers.csv")
 
-	sortedCounts := make([]string, 0, len(domainMap))
+	sortedNames := make([]string, 0, len(domainMap))
 	for k := range domainMap {
-		sortedCounts = append(sortedCounts, k)
+		sortedNames = append(sortedNames, k)
 	}
-	sort.Strings(sortedCounts)
+	sort.Strings(sortedNames)
 
-	for _, k := range sortedCounts {
+	var sortedDomainsWithCount = make(map[string]int)
+
+	for _, k := range sortedNames {
 		fmt.Printf("Domain: %s, Customer Count: %d\n", k, domainMap[k])
+		sortedDomainsWithCount = append(k, domainMap[k])
 	}
 }
