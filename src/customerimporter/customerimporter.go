@@ -3,14 +3,25 @@ package customerimporter
 import (
 	"bufio"
 	"encoding/csv"
+	"fmt"
 	"io"
 	"log"
 	"os"
 	"strings"
 )
 
-// GetAllDomainNames - Returns a list of domains from the CSV
-func GetAllDomainNames(fileName string) []string {
+// GetUniqueDomainNamesWithCount -
+func GetUniqueDomainNamesWithCount(fileName string) map[string]int {
+	var domains = getAllDomainNames(fileName)
+	fmt.Println("Total Domain Names = ", len(domains))
+
+	var domainFrequency = getDomainNameWithCount(domains)
+	fmt.Println("Total Unique Domains = ", len(domainFrequency))
+
+	return domainFrequency
+}
+
+func getAllDomainNames(fileName string) []string {
 	reader := getFileReader(fileName)
 	var domains []string
 	for {
@@ -32,8 +43,7 @@ func GetAllDomainNames(fileName string) []string {
 	return domains
 }
 
-// GetDomainNameWithCount -
-func GetDomainNameWithCount(domains []string) map[string]int {
+func getDomainNameWithCount(domains []string) map[string]int {
 	domainFrequency := make(map[string]int)
 	for _, item := range domains {
 		_, exist := domainFrequency[item]

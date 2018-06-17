@@ -8,11 +8,7 @@ import (
 )
 
 func main() {
-	domainNames := customerimporter.GetAllDomainNames("../customers.csv")
-	fmt.Println("Total Domain Names = ", len(domainNames))
-
-	domainMap := customerimporter.GetDomainNameWithCount(domainNames)
-	fmt.Println("Total Unique Domains = ", len(domainMap))
+	domainMap := customerimporter.GetUniqueDomainNamesWithCount("../customers.csv")
 
 	sortedCounts := make([]string, 0, len(domainMap))
 	for k := range domainMap {
