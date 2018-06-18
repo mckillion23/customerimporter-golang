@@ -16,10 +16,7 @@ func main() {
 	}
 	sort.Strings(sortedNames)
 
-	var sortedDomainsWithCount = make(map[string]int)
-
 	for _, k := range sortedNames {
 		fmt.Printf("Domain: %s, Customer Count: %d\n", k, domainMap[k])
-		sortedDomainsWithCount = append(k, domainMap[k])
 	}
 }

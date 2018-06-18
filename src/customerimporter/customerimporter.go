@@ -44,16 +44,11 @@ func getAllDomainNames(fileName string) []string {
 }
 
 func getDomainNameWithCount(domains []string) map[string]int {
-	domainFrequency := make(map[string]int)
-	for _, item := range domains {
-		_, exist := domainFrequency[item]
-		if exist {
-			domainFrequency[item]++
-		} else {
-			domainFrequency[item] = 1
-		}
+	counts := make(map[string]int, len(domains))
+	for _, word := range domains {
+		counts[word]++
 	}
-	return domainFrequency
+	return counts
 }
 
 func getFileReader(fileName string) *csv.Reader {
